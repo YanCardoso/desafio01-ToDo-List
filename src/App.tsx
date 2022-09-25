@@ -4,6 +4,7 @@ import { SearchBar } from "./components/SearchBar";
 import { TaskList } from "./components/TaskList";
 import "./styles/global.scss";
 
+
 function App() {
   return (
     <>

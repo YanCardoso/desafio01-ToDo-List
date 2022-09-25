@@ -18,6 +18,25 @@
   }
 
   button {
+    display: flex;
     width: 90px;
+    color: var(--gray-100);
+    background: var(--dark-blue);
+    font-weight: 700;
+    border: none;
+    border-radius: 8px;
+    line-height: 140%;
+    justify-content: center;
+    align-items: center;
+    transition: all 0.2;
+    cursor: pointer;
+
+    .plusIcon {
+      margin-left: 0.5rem;
+    }
+  }
+
+  button:hover {
+    background: var(--blue);
   }
 }

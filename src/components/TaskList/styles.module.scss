@@ -7,6 +7,47 @@
     display: flex;
     justify-content: space-between;
     margin-bottom: 1.5rem;
+    line-height: 140%;
+
+    .completeTasks {
+      display: flex;
+      gap: 0.5rem;
+      font-weight: 700;
+
+      span:first-child {
+        color: var(--blue);
+      }
+
+      span + span {
+        display: flex;
+        background: var(--gray-400);
+        border-radius: 999px;
+        color: var(--gray-200);
+        align-items: center;
+        width: 2rem;
+        justify-content: center;
+      }
+    }
+
+    .completed {
+      display: flex;
+      gap: 0.5rem;
+      font-weight: 700;
+
+      span:first-child {
+        color: var(--purple);
+      }
+
+      span + span {
+        display: flex;
+        background: var(--gray-400);
+        border-radius: 999px;
+        color: var(--gray-200);
+        align-items: center;
+        width: 2rem;
+        justify-content: center;
+      }
+    }
   }
 
   main {
@@ -28,6 +69,34 @@
       span {
         margin-top: 1rem;
         font-weight: 700;
+      }
+    }
+
+    .taskList {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+
+      .taskElementContent {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        background: var(--gray-500);
+        border-radius: 8px;
+        min-height: 4.5rem;
+        padding: 1rem;
+        border: 1px solid var(--gray-400);
+
+         p {
+          color: var(--gray-100);
+          line-height: 140%;
+          font-size: 0.875rem;
+        }
+
+        .checkboxMarkup {
+          color: var(--gray-300);
+          text-decoration: line-through;
+        }
       }
     }
   }
