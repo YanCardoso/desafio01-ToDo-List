@@ -14,7 +14,7 @@ interface InputBarProps {
 }
 
 export function InputBar({ addNewItemTask }: InputBarProps) {
-  const [messageTask, setMessageTask] = useState('');
+  const [messageTask, setMessageTask] = useState("");
 
   function handleMessageCreate(e) {
     e.preventDefault;
@@ -38,7 +38,12 @@ export function InputBar({ addNewItemTask }: InputBarProps) {
 
   return (
     <div className={styles.container}>
-      <input type="text" value={messageTask} onChange={handleMessageCreate} />
+      <input
+        placeholder="Adicione uma nova tarefa"
+        type="text"
+        value={messageTask}
+        onChange={handleMessageCreate}
+      />
       <button onClick={handleTaskCreate}>
         Criar
         <PlusIcon className={styles.plusIcon} />
