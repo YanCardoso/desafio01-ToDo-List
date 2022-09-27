@@ -3,7 +3,6 @@ import styles from "./App.module.scss";
 import { ReactComponent as LogoReact } from "./assets/logo.svg";
 import { InputBar } from "./components/InputBar";
 import { TaskList } from "./components/TaskList";
-import { datalist } from "./data/datalistfake";
 import "./styles/global.scss";
 
 type Tasks = {
@@ -13,7 +12,7 @@ type Tasks = {
 };
 
 function App() {
-  const [tasksList, setTaskList] = useState(datalist);
+  const [tasksList, setTaskList] = useState<Tasks[]>([]);
 
   function updateCheckItem(checkedList: Array<Tasks>) {
     setTaskList(checkedList);
