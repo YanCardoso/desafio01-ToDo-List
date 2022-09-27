@@ -3,20 +3,39 @@ import styles from "./styles.module.scss";
 import { ReactComponent as ListIcon } from "../../assets/clipboard.svg";
 import { ReactComponent as TrashIcon } from "../../assets/trash.svg";
 import { useState } from "react";
-import { datalist } from "../../data/datalistfake";
 import { CheckBox } from "../CheckBox";
 
-export function TaskList() {
-  const [tasksList, setTaskList] = useState(datalist);
+interface TaskListProps {
+  dataList: Tasks[];
+  updateCheckItem: (newList: Tasks[]) => void;
+}
+
+type Tasks = {
+  id: string;
+  task: string;
+  isCompleted: boolean;
+};
+
+export function TaskList({ dataList, updateCheckItem, ...props }: TaskListProps) {
+  const [completedCount, setCompletedCount] = useState(0);
 
   function handleChangeCheck(id: string) {
-    const newList = tasksList.map((tasks) => {
+    const newList = dataList.map((tasks) => {
       if (id === tasks.id) {
         tasks.isCompleted = !tasks.isCompleted;
       }
       return tasks;
     });
-    setTaskList(newList);
+    updateCheckItem(newList);
+    completeTasks();
+  }
+
+  function completeTasks() {
+    const completedTasksCount = dataList.filter((task) => {
+      return task.isCompleted;
+    });
+
+    setCompletedCount(completedTasksCount.length);
   }
 
   return (
@@ -24,11 +43,11 @@ export function TaskList() {
       <header>
         <div className={styles.completeTasks}>
           <span>Tarefas criadas</span>
-          <span>4</span>
+          <span>{dataList.length}</span>
         </div>
         <div className={styles.completed}>
           <span>Concluídas</span>
-          <span>2</span>
+          <span>{`${completedCount} de ${dataList.length}`}</span>
         </div>
       </header>
       <main>
@@ -40,7 +59,7 @@ export function TaskList() {
           </div>
         ) : (
           <div className={styles.taskList}>
-            {datalist.map((task) => {
+            {dataList.map((task) => {
               return (
                 <div key={task.id} className={styles.taskElementContent}>
                   <CheckBox

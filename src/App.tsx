@@ -1,11 +1,29 @@
+import { useState } from "react";
 import styles from "./App.module.scss";
 import { ReactComponent as LogoReact } from "./assets/logo.svg";
-import { SearchBar } from "./components/SearchBar";
+import { InputBar } from "./components/InputBar";
 import { TaskList } from "./components/TaskList";
+import { datalist } from "./data/datalistfake";
 import "./styles/global.scss";
 
+type Tasks = {
+  id: string;
+  task: string;
+  isCompleted: boolean;
+};
 
 function App() {
+  const [tasksList, setTaskList] = useState(datalist);
+
+  function updateCheckItem(checkedList: Array<Tasks>) {
+    setTaskList(checkedList);
+  }
+
+  function addNewItemTask(listItem: Tasks) {
+    const updatedList = [...tasksList, listItem];
+    setTaskList(updatedList);
+  }
+
   return (
     <>
       <header className={styles.container}>
@@ -13,8 +31,8 @@ function App() {
       </header>
       <main className={styles.main}>
         <div className={styles.contentMain}>
-          <SearchBar />
-          <TaskList />
+          <InputBar addNewItemTask={addNewItemTask} />
+          <TaskList dataList={tasksList} updateCheckItem={updateCheckItem} />
         </div>
       </main>
     </>

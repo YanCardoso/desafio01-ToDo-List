@@ -21,10 +21,10 @@
       span + span {
         display: flex;
         background: var(--gray-400);
+        padding: 0.125rem 0.5rem;
         border-radius: 999px;
         color: var(--gray-200);
         align-items: center;
-        width: 2rem;
         justify-content: center;
       }
     }
@@ -41,10 +41,10 @@
       span + span {
         display: flex;
         background: var(--gray-400);
+        padding: 0.125rem 0.5rem;
         border-radius: 999px;
         color: var(--gray-200);
         align-items: center;
-        width: 2rem;
         justify-content: center;
       }
     }
@@ -87,7 +87,7 @@
         padding: 1rem;
         border: 1px solid var(--gray-400);
 
-         p {
+        p {
           color: var(--gray-100);
           line-height: 140%;
           font-size: 0.875rem;
