@@ -91,6 +91,8 @@
           color: var(--gray-100);
           line-height: 140%;
           font-size: 0.875rem;
+          overflow-wrap: anywhere;
+          flex: 1;
         }
 
         .checkboxMarkup {

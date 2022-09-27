@@ -14,7 +14,7 @@ interface InputBarProps {
 }
 
 export function InputBar({ addNewItemTask }: InputBarProps) {
-  const [messageTask, setMessageTask] = useState("");
+  const [messageTask, setMessageTask] = useState('');
 
   function handleMessageCreate(e) {
     e.preventDefault;
@@ -24,12 +24,16 @@ export function InputBar({ addNewItemTask }: InputBarProps) {
   function handleTaskCreate() {
     const newTask = {
       id: uuidv4(),
-      task: messageTask,
+      task: `${messageTask}`,
       isCompleted: false,
     };
 
-    addNewItemTask(newTask)
-    setMessageTask('')
+    if (!messageTask) {
+      return;
+    }
+
+    addNewItemTask(newTask);
+    setMessageTask("");
   }
 
   return (

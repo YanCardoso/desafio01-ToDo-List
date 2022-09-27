@@ -1,7 +1,7 @@
 import styles from "./styles.module.scss";
 
 import { ReactComponent as ListIcon } from "../../assets/clipboard.svg";
-import { ReactComponent as TrashIcon } from "../../assets/trash.svg";
+import { TrashIconButton } from "../TrashButton";
 import { useState } from "react";
 import { CheckBox } from "../CheckBox";
 
@@ -16,7 +16,11 @@ type Tasks = {
   isCompleted: boolean;
 };
 
-export function TaskList({ dataList, updateCheckItem, ...props }: TaskListProps) {
+export function TaskList({
+  dataList,
+  updateCheckItem,
+  ...props
+}: TaskListProps) {
   const [completedCount, setCompletedCount] = useState(0);
 
   function handleChangeCheck(id: string) {
@@ -38,6 +42,14 @@ export function TaskList({ dataList, updateCheckItem, ...props }: TaskListProps)
     setCompletedCount(completedTasksCount.length);
   }
 
+  function handleDeleteTask(id: string) {
+    const listBeforeDelete = dataList.filter((task) => {
+      return id !== task.id;
+    });
+
+    updateCheckItem(listBeforeDelete);
+  }
+
   return (
     <div className={styles.container}>
       <header>
@@ -51,7 +63,7 @@ export function TaskList({ dataList, updateCheckItem, ...props }: TaskListProps)
         </div>
       </header>
       <main>
-        {false ? (
+        {dataList.length === 0 ? (
           <div className={styles.emptyContent}>
             <ListIcon />
             <span>Você ainda não tem tarefas cadastradas</span>
@@ -73,7 +85,7 @@ export function TaskList({ dataList, updateCheckItem, ...props }: TaskListProps)
                   >
                     {task.task}
                   </p>
-                  <TrashIcon />
+                  <TrashIconButton onClick={() => handleDeleteTask(task.id)} />
                 </div>
               );
             })}
